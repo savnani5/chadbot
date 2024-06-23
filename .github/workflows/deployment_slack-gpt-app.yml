@@ -8,6 +8,10 @@ on:
   push:
     branches:
       - deployment
+    # paths:
+    #   - 'slack/**'
+    #   - 'requirements.txt'
+    #   - 'startup.txt'
   workflow_dispatch:
 
 jobs:
@@ -32,16 +36,19 @@ jobs:
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+      # - name: Zip artifact for deployment
+      #   run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
-            release.zip
+            .
             !venv/
+          # path: |
+          #   release.zip
+          #   !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,9 +64,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: python-app
+          path: .
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
+      # - name: Unzip artifact for deployment
+      #   run: unzip release.zip
 
       
       # - name: Login to Azure
@@ -79,5 +87,4 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'slack-gpt-app'
-          slot-name: 'Production'
-          
+          slot-name: 'Production'          
