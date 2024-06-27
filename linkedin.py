@@ -1,12 +1,14 @@
 # import requests
+# from dotenv import find_dotenv, load_dotenv
+# load_dotenv(find_dotenv())
 
-# api_key = 'gx6PW2_VrTEC_WTdXBoicw'
+# api_key = os.getenv('PROXYCURL_API_KEY')
 # headers = {'Authorization': 'Bearer ' + api_key}
 # api_endpoint = 'https://nubela.co/proxycurl/api/v2/linkedin'
 # params = {
 #     'twitter_profile_url': '',
 #     'facebook_profile_url': '',
-#     'linkedin_profile_url': 'https://linkedin.com/in/paras-savnani-532966182/',
+#     'linkedin_profile_url': '',
 #     'extra': 'include',
 #     'github_profile_id': 'include',
 #     'facebook_profile_id': 'include',
